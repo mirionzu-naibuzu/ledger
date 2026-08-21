@@ -77,14 +77,14 @@ function Entries() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface">
       <Nav />
-      <div className="px-4 py-6">
-      <h1 className="text-2xl font-bold mb-4">Entries</h1>
+      <div className="px-4 py-6 max-w-2xl mx-auto">
+      <h1 className="font-display text-2xl text-ink-900 mb-4">Entries</h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-lg shadow p-4 mb-6 space-y-3"
+        className="bg-surface-card rounded-xl shadow-sm border border-ink-400/10 p-5 mb-6 space-y-3"
       >
         <div className="flex gap-3">
           <input
@@ -93,7 +93,7 @@ function Entries() {
             placeholder="Amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="flex-1 border rounded px-3 py-2"
+            className="flex-1 border border-ink-400/30 rounded-lg px-3 py-2 outline-none focus:border-brand-600 transition-colors"
             required
           />
           <input
@@ -101,7 +101,7 @@ function Entries() {
             placeholder="Category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="flex-1 border rounded px-3 py-2"
+            className="flex-1 border border-ink-400/30 rounded-lg px-3 py-2 outline-none focus:border-brand-600 transition-colors"
             required
           />
         </div>
@@ -110,7 +110,7 @@ function Entries() {
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="w-full border rounded px-3 py-2"
+          className="w-full border border-ink-400/30 rounded-lg px-3 py-2 outline-none focus:border-brand-600 transition-colors"
           required
         />
 
@@ -119,13 +119,13 @@ function Entries() {
           placeholder="Note (optional)"
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          className="w-full border rounded px-3 py-2"
+          className="w-full border border-ink-400/30 rounded-lg px-3 py-2 outline-none focus:border-brand-600 transition-colors"
         />
 
         <div className="flex gap-2">
           <button
             type="submit"
-            className="flex-1 bg-blue-600 text-white py-2 rounded font-medium"
+            className="flex-1 bg-brand-600 hover:bg-brand-700 text-white py-2.5 rounded-lg font-medium transition-colors"
           >
             {editingId !== null ? 'Update Entry' : 'Add Entry'}
           </button>
@@ -133,7 +133,7 @@ function Entries() {
             <button
               type="button"
               onClick={resetForm}
-              className="px-4 py-2 rounded border"
+              className="px-4 py-2.5 rounded-lg border border-ink-400/30 text-ink-600 hover:bg-surface transition-colors"
             >
               Cancel
             </button>
@@ -142,31 +142,33 @@ function Entries() {
       </form>
 
       {entries.length === 0 ? (
-        <p className="text-gray-500">No entries yet.</p>
+        <p className="text-ink-400 text-sm text-center py-8">
+          No entries yet — add your first one above.
+        </p>
       ) : (
         <ul className="space-y-2">
-                    {entries.map((entry) => (
+          {entries.map((entry) => (
             <li
               key={entry.id}
-              className="bg-white rounded-lg shadow p-4 flex justify-between items-center"
+              className="bg-surface-card rounded-xl shadow-sm border border-ink-400/10 p-4 flex justify-between items-center"
             >
               <div>
-                <p className="font-medium">{entry.category}</p>
-                <p className="text-sm text-gray-500">
+                <p className="font-medium text-ink-900">{entry.category}</p>
+                <p className="text-sm text-ink-400">
                   {entry.date} {entry.note ? `· ${entry.note}` : ''}
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <p className="font-semibold">${entry.amount.toFixed(2)}</p>
+                <p className="font-semibold text-ink-900">${entry.amount.toFixed(2)}</p>
                 <button
                   onClick={() => handleEditClick(entry)}
-                  className="text-blue-500 text-sm"
+                  className="text-sm text-brand-600 hover:text-brand-700 transition-colors"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(entry.id)}
-                  className="text-red-500 text-sm"
+                  className="text-sm text-danger-600 hover:text-danger-700 transition-colors"
                 >
                   Delete
                 </button>

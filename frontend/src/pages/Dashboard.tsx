@@ -13,7 +13,7 @@ interface DashboardSummary {
   by_category: CategoryTotal[];
 }
 
-const COLORS = ['#3b82f6', '#ef4444', '#22c55e', '#f59e0b', '#a855f7', '#ec4899'];
+const COLORS = ['#0f6e5c', '#b3402f', '#c9a227', '#5b6b8c', '#8a5a44', '#6b8f71'];
 
 function Dashboard() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
@@ -35,21 +35,25 @@ function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface">
       <Nav />
-      <div className="px-4 py-6">
-      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      <div className="px-4 py-6 max-w-2xl mx-auto">
+      <h1 className="font-display text-2xl text-ink-900 mb-4">Dashboard</h1>
 
-      <div className="bg-white rounded-lg shadow p-4 mb-6">
-        <p className="text-sm text-gray-500">This month</p>
-        <p className="text-3xl font-bold">${summary.month_total.toFixed(2)}</p>
+      <div className="bg-surface-card rounded-xl shadow-sm border border-ink-400/10 p-5 mb-6">
+        <p className="text-sm text-ink-600">This month</p>
+        <p className="font-display text-3xl text-ink-900 mt-1">
+          ${summary.month_total.toFixed(2)}
+        </p>
       </div>
 
       {summary.by_category.length === 0 ? (
-        <p className="text-gray-500">No entries this month yet.</p>
+        <p className="text-ink-400 text-sm text-center py-8">
+          No entries this month yet.
+        </p>
       ) : (
-        <div className="bg-white rounded-lg shadow p-4">
-          <p className="font-medium mb-2">By category</p>
+        <div className="bg-surface-card rounded-xl shadow-sm border border-ink-400/10 p-5">
+          <p className="font-medium text-ink-900 mb-2">By category</p>
 
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
@@ -70,17 +74,17 @@ function Dashboard() {
             </PieChart>
           </ResponsiveContainer>
 
-          <ul className="mt-4 space-y-1">
+          <ul className="mt-4 space-y-2">
             {summary.by_category.map((cat, index) => (
               <li key={cat.category} className="flex justify-between text-sm">
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 text-ink-600">
                   <span
                     className="w-3 h-3 rounded-full inline-block"
                     style={{ backgroundColor: COLORS[index % COLORS.length] }}
                   />
                   {cat.category}
                 </span>
-                <span className="font-medium">${cat.total.toFixed(2)}</span>
+                <span className="font-medium text-ink-900">${cat.total.toFixed(2)}</span>
               </li>
             ))}
           </ul>

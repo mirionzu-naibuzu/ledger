@@ -10,12 +10,25 @@ function Nav() {
   }
 
   return (
-    <nav className="bg-white shadow px-4 py-3 flex justify-between items-center">
-      <div className="flex gap-4">
-        <Link to="/entries" className="font-medium">Entries</Link>
-        <Link to="/dashboard" className="font-medium">Dashboard</Link>
+    <nav className="bg-surface-card border-b border-ink-400/10 px-4 py-3 flex justify-between items-center">
+      <div className="flex gap-5">
+        <Link
+          to="/entries"
+          className="font-medium text-ink-900 hover:text-brand-600 transition-colors"
+        >
+          Entries
+        </Link>
+        <Link
+          to="/dashboard"
+          className="font-medium text-ink-900 hover:text-brand-600 transition-colors"
+        >
+          Dashboard
+        </Link>
       </div>
-      <button onClick={handleLogout} className="text-sm text-red-500">
+      <button
+        onClick={handleLogout}
+        className="text-sm text-danger-600 hover:text-danger-700 transition-colors"
+      >
         Log out
       </button>
     </nav>
